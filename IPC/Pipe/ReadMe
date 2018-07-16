@@ -1,0 +1,35 @@
+PIPE:
+1.Pipe is a unidirectional chennal that can be used for interprocess communication.
+2.Pipe is created using pipe() which create a new pipe and return two file descriptor.one refering to Read and of the pipe and other refering to Write end of the Pipe.
+	Case1: Process attempt to read from and empty pipe
+		then read will block untill data is availabe.
+
+	case2: Process attemp to write to a full pipe
+		then write will block untill sufficient data has been read from the pipe to allow the write to complete
+
+Note:
+	The communication provided by a pipe is byte stream. there is no concept of message boundries.
+
+
+#include<unistd.h>
+	int pipe(int pipefs[2]); 
+Return value:
+	0  success
+       -1  Fail
+
+
+Popen():
+	1.open a process by creating a pipe,forking and invoking the shell.
+	2.Prototype:
+	  FILE* popen(cons char* command,const char* type);
+	3.Return Type: file pointer
+		NULL if fork and pipe call fail.or if it can't allocate memory.
+	4.since Pipe is uinidirectional so type argument can be either Read("r") or Write("w") not both.
+
+pclose():
+	1.when a process started with popen has finished the we can close the file streaming associated with it using pclose().
+	2.Prototype:
+		int pclose(FILE *stream_to_close);
+	3.Return value:
+		0  success
+       	       -1  Fail
