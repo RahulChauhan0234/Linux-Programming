@@ -1,0 +1,7 @@
+/* IPC */
+Inter Process Communication
+1. Pipe
+2. FIFO
+3. Shared Memory
+4. Message Queue
+
